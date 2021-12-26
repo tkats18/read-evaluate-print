@@ -50,4 +50,4 @@ class SubscriptionStorage:
         user_channel = db_object.data.split("-")
         user = user_channel[0].split(":")
         channel = user_channel[1].split(":")
-        return SubscriptionDTO(int(db_object.id), int(user[1]), int(channel[1]))
+        return SubscriptionDTO(int(db_object.id), int(channel[1]), int(user[1]))
