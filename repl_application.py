@@ -1,9 +1,9 @@
 from typing import Protocol
 
-from channel_storage import ChannelStorage
+from channel_storage import IChannelStorage
 from observe import Observable, PublishNotification, SubscribeNotification
-from subscription_storage import SubscriptionStorage
-from user_storage import UserStorage
+from subscription_storage import ISubscriptionStorage
+from user_storage import IUserStorage
 
 
 class IPublisherApplication(Protocol):
@@ -18,7 +18,7 @@ class ISubscriberApplication(Protocol):
 
 class ReplApplication(Observable):
 
-    def __init__(self, users: UserStorage, channels: ChannelStorage, subscriptions: SubscriptionStorage):
+    def __init__(self, users: IUserStorage, channels: IChannelStorage, subscriptions: ISubscriptionStorage):
         super().__init__()
         self.users = users
         self.channels = channels

@@ -1,8 +1,22 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, Protocol
 
 from repl_dto import DatabaseInsertObject, DatabaseResponseObject, CommandDTO
 from storage import IRepository
+
+
+class ICommandStorage(Protocol):
+    def get_command_by_name(self, name: str) -> Optional[CommandDTO]:
+        pass
+
+    def get_command_by_index(self, index: int) -> Optional[CommandDTO]:
+        pass
+
+    def get_content_num(self) -> int:
+        pass
+
+    def add_command(self, command: str) -> None:
+        pass
 
 
 @dataclass

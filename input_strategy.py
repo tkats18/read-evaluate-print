@@ -2,7 +2,7 @@ from abc import abstractmethod
 from dataclasses import dataclass
 from typing import Protocol
 
-from command_storage import CommandStorage
+from command_storage import ICommandStorage
 
 
 class ICommandInputStrategy(Protocol):
@@ -30,7 +30,7 @@ class BaseCommandInputStrategy(ICommandInputStrategy):
 # ამიტო ესე დავტოვე :დდ
 @dataclass
 class CommandStorageInputStrategy(BaseCommandInputStrategy):
-    storage: CommandStorage
+    storage: ICommandStorage
     index: int = 0
 
     def get_next_line(self) -> str:

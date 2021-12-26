@@ -1,8 +1,16 @@
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, Protocol
 
 from repl_dto import ChannelDTO, DatabaseInsertObject, DatabaseResponseObject
 from storage import IRepository
+
+
+class IChannelStorage(Protocol):
+    def get_channel_by_name(self, name: str) -> Optional[ChannelDTO]:
+        pass
+
+    def add_channel(self, name: str) -> None:
+        pass
 
 
 @dataclass

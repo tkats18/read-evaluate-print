@@ -1,9 +1,20 @@
 from dataclasses import dataclass
-from typing import List
+from typing import List, Protocol
 
 from repl_dto import ChannelDTO, UserDTO, DatabaseResponseObject, \
     SubscriptionDTO, DatabaseInsertObject
 from storage import IRepository
+
+
+class ISubscriptionStorage(Protocol):
+    def get_channel_subscriptions(self, channel: ChannelDTO) -> List[SubscriptionDTO]:
+        pass
+
+    def get_user_subscriptions(self, user: UserDTO) -> List[SubscriptionDTO]:
+        pass
+
+    def add_subscription(self, user: UserDTO, channel: ChannelDTO) -> None:
+        pass
 
 
 @dataclass
@@ -29,7 +40,7 @@ class SubscriptionStorage:
         return subscriptions
 
     def add_subscription(self, user: UserDTO, channel: ChannelDTO) -> None:
-        insert_object = DatabaseInsertObject(self._to_db_content(user,channel))
+        insert_object = DatabaseInsertObject(self._to_db_content(user, channel))
         self.inner_storage.add_item(insert_object)
 
     def _to_db_content(self, user: UserDTO, channel: ChannelDTO) -> str:

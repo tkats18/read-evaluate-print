@@ -11,12 +11,13 @@ from subscription_storage import SubscriptionStorage
 from user_storage import UserStorage
 
 if __name__ == "__main__":
-    command_repository = IJsonStorageSystem("./data/commands.json")
-    user_storage = UserStorage(IJsonStorageSystem("./data/users.json"))
-    channel_storage = ChannelStorage(IJsonStorageSystem("./data/channels.json"))
-    subscription_storage = SubscriptionStorage(IJsonStorageSystem("./data/subscriptions.json"))
-    application = ReplApplication(user_storage, channel_storage, subscription_storage)
 
+    command_repository = IJsonStorageSystem("./data/commands.json", False)
+    user_storage = UserStorage(IJsonStorageSystem("./data/users.json", True))
+    channel_storage = ChannelStorage(IJsonStorageSystem("./data/channels.json", True))
+    subscription_storage = SubscriptionStorage(IJsonStorageSystem("./data/subscriptions.json", True))
+
+    application = ReplApplication(user_storage, channel_storage, subscription_storage)
     application.attach_publish_observer(PublishNotificationPrinter())
     application.attach_subscribe_observer(SubscribeNotificationPrinter())
 
