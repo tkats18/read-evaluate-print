@@ -1,2 +1,2 @@
-def test_parser_basic():
+def test_parser_basic() -> None:
     print("movedii")
