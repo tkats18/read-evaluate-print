@@ -11,7 +11,7 @@ class IInputParser:
 
 class IInputParserBuilder:
     def with_generator(
-            self, prefix: str, generator: ICommandGenerator
+        self, prefix: str, generator: ICommandGenerator
     ) -> "IInputParserBuilder":
         pass
 
@@ -30,7 +30,7 @@ class InputParser:
         input_parts = input_str.split(" ")
         index = input_str.index(input_parts[1])
         return self.command_mapping[input_parts[1]].generate_command(
-            input_str[index + len(input_parts[1]) + 1:]
+            input_str[index + len(input_parts[1]) + 1 :]
         )
 
 
@@ -39,7 +39,7 @@ class InputParserBuilder:
         self.kwargs = kwargs or {}
 
     def with_generator(
-            self, prefix: str, generator: ICommandGenerator
+        self, prefix: str, generator: ICommandGenerator
     ) -> "InputParserBuilder":
         self.kwargs.setdefault("generators", {})
         self.kwargs["generators"][prefix] = generator

@@ -12,5 +12,7 @@ class REPLSimulator:
     def simulate(self) -> None:
         while self.inputter.has_next_command():
             current_input = self.inputter.get_next_line()
+            if current_input == "-1":
+                break
             command = self.parser.parse(current_input)
             command.execute()

@@ -39,8 +39,6 @@ class UserStorage:
         return UserDTO(db_object.id, db_object.data)
 
 
-# სტორიჯების ინტერფეისები
 # კონსოლის გატესტვა
 
 # ტესტები
-# formatter
