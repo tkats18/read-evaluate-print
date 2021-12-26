@@ -1,7 +1,10 @@
+from dataclasses import dataclass
+
 from REPlDto import ChannelDTO, DatabaseInsertObject, DatabaseResponseObject
 from Storage import IRepository
 
 
+@dataclass
 class ChannelStorage:
     inner_storage: IRepository
 

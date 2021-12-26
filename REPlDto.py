@@ -36,6 +36,11 @@ class SubscriptionDTO(AbstractDTO):
     user_id: int
 
 
+@dataclass
+class CommandDTO(AbstractDTO):
+    command: str
+
+
 #####################################
 @dataclass
 class ChannelSubscriptionsDTO(AbstractDTO):

@@ -1,65 +1,58 @@
+from abc import abstractmethod
 from dataclasses import dataclass
+from typing import Protocol
+
+from CommandStorage import CommandStorage
 
 
-class CommandInputter:
-    def get_line(self, index: int) -> str:
-        pass
-
-    def get_line_num(self) -> int:
-        pass
-
-    # ეს ეხლა რეალურად არ მჭირდება, მაგრამ კონსოლის ინფუთისთვის ამას
-    # გამოვიყენებდი (ამის საჩვენებლად დავწერე).
+class ICommandInputStrategy(Protocol):
     def get_next_line(self) -> str:
         pass
 
+    def has_next_command(self) -> bool:
+        pass
 
-class CommandStorageInputter:
-    # TODO
-    # storage: Storage
-    def get_line(self, index: int) -> str:
-        return ""
 
-    def get_line_num(self) -> int:
+class BaseCommandInputStrategy(ICommandInputStrategy):
+    @abstractmethod
+    def get_next_line(self) -> str:
+        pass
+
+    @abstractmethod
+    def has_next_command(self) -> bool:
         pass
 
 
 # ეს უბრალოდ მაგალითისთვის რატო შეიძლებოდა ეს სტრატეგია საერთოდ
 # პროდაქშენში დაჭირვებოდა ვინმეს
-class CommandConsoleInputter:
-
-    def get_next_line(self) -> str:
-        pass
-
-
-# ----------------------------------------------------------
-
-
-class CommandInputStrategy:
-    # storage, stringparser
-    # inputer, stringParser
-    commandInputter: CommandInputter
-
-    def has_next_raw_command(self) -> bool:
-        pass
-
-    def get_next_raw_command(self) -> str:
-        pass
-
-
 @dataclass
-class StorageInputStrategy(CommandInputStrategy):
-    commandInputter: CommandInputter
+class CommandStorageInputStrategy(BaseCommandInputStrategy):
+    storage: CommandStorage
     index: int = 0
 
-    def has_next_raw_command(self) -> bool:
-        return self.index < self.commandInputter.get_line_num()
-
-    def get_next_raw_command(self) -> str:
-
-        if not self.has_next_raw_command():
+    def get_next_line(self) -> str:
+        if not self.has_next_command():
             raise IndexError()
 
-        res = self.commandInputter.get_line(self.index)
+        res = self.storage.get_command_by_index(self.index).command
         self.index += 1
         return res
+
+    def has_next_command(self) -> bool:
+        return self.index < self.storage.get_content_num()
+
+
+class CommandConsoleInputStrategy(BaseCommandInputStrategy):
+    has_next = True
+
+    def get_next_line(self) -> str:
+        if not self.has_next_command():
+            raise IndexError()
+
+        current_input = input()
+        if current_input == "-1":
+            self.has_next = False
+        return current_input
+
+    def has_next_command(self) -> bool:
+        raise self.has_next

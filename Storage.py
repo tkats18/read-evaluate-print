@@ -1,4 +1,5 @@
 import json
+import os
 from dataclasses import dataclass
 from typing import Protocol, List, Any
 
@@ -21,9 +22,16 @@ class IRepository(Protocol):
         pass
 
 
-@dataclass
 class IJsonStorageSystem(IRepository):
-    file_path: str
+
+    def __init__(self, file_path: str):
+        self.file_path = file_path
+        mode = 'a' if os.path.exists(file_path) else 'w'
+
+        if mode == 'w':
+            with open(file_path, mode) as f:
+                f.write("{\n\"data\":[\n]\n}")
+
     # init TODO
     def get_item_with_id(self, index: int) -> DatabaseResponseObject:
         data_array = self.get_all_content()

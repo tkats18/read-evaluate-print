@@ -1,8 +1,11 @@
+from dataclasses import dataclass
+
 from REPlDto import DatabaseResponseObject, UserDTO, DatabaseInsertObject
 from Storage import IRepository
 
 
-class UserStorageAdapter:
+@dataclass
+class UserStorage:
     inner_storage: IRepository
 
     def get_user_by_name(self, name: str) -> UserDTO:
@@ -15,14 +18,8 @@ class UserStorageAdapter:
     def _to_user(self, db_object: DatabaseResponseObject) -> UserDTO:
         return UserDTO(db_object.id, db_object.data)
 
-# სამივე სთორჯის დამთავრება
-# დამატება სთორეჯებში
-# სთორეჯიდან ბრუნდებოდეს კლასი რომელსაც ექნება toUser toChannel... და ექნება დეფაულტები რაც მაქ : id , key
-# გაპარსვის დაწერა
-# ინფუთ სტრატეგიის გადახედვა
 # აპლიკაციის დაწერა
 
-# კომანდების დაწერა
 # ობზერვერის დაწერა
 # ტესტები
 # formatter
