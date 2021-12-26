@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
-from InputParser import InputParser
-from InputStrategy import ICommandInputStrategy
+from input_parser import InputParser
+from input_strategy import ICommandInputStrategy
 
 
 @dataclass

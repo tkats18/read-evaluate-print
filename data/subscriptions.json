@@ -1,4 +1,12 @@
 {
-"data":[
-]
+    "data": [
+        {
+            "id": 0,
+            "data": "user:0-channel:0"
+        },
+        {
+            "id": 1,
+            "data": "user:1-channel:0"
+        }
+    ]
 }

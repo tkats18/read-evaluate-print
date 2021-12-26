@@ -1,4 +1,12 @@
 {
-"data":[
-]
+    "data": [
+        {
+            "id": 0,
+            "data": "Alice"
+        },
+        {
+            "id": 1,
+            "data": "Bob"
+        }
+    ]
 }

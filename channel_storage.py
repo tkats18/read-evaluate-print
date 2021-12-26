@@ -1,15 +1,20 @@
 from dataclasses import dataclass
+from typing import Optional
 
-from REPlDto import ChannelDTO, DatabaseInsertObject, DatabaseResponseObject
-from Storage import IRepository
+from repl_dto import ChannelDTO, DatabaseInsertObject, DatabaseResponseObject
+from storage import IRepository
 
 
 @dataclass
 class ChannelStorage:
     inner_storage: IRepository
 
-    def get_channel_by_name(self, name: str) -> ChannelDTO:
+    def get_channel_by_name(self, name: str) -> Optional[ChannelDTO]:
         dto = self.inner_storage.get_item_with_data(name)
+
+        if dto is None:
+            return None
+
         return self._to_channel(dto)
 
     def add_channel(self, name: str) -> None:

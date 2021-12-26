@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Dict, Optional, Any
 
-from Command import Command, ICommandGenerator
+from command import Command, ICommandGenerator
 
 
 class IInputParser:

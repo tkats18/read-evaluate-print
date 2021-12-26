@@ -2,7 +2,7 @@ from abc import abstractmethod
 from dataclasses import dataclass
 from typing import Protocol
 
-from CommandStorage import CommandStorage
+from command_storage import CommandStorage
 
 
 class ICommandInputStrategy(Protocol):
@@ -25,6 +25,9 @@ class BaseCommandInputStrategy(ICommandInputStrategy):
 
 # ეს უბრალოდ მაგალითისთვის რატო შეიძლებოდა ეს სტრატეგია საერთოდ
 # პროდაქშენში დაჭირვებოდა ვინმეს
+
+# აქ იტერატორი მინდოდა მარა კონსოლზე ვერ წარმოვიდგინე როგორ იმუშავებდა
+# ამიტო ესე დავტოვე :დდ
 @dataclass
 class CommandStorageInputStrategy(BaseCommandInputStrategy):
     storage: CommandStorage
@@ -34,9 +37,13 @@ class CommandStorageInputStrategy(BaseCommandInputStrategy):
         if not self.has_next_command():
             raise IndexError()
 
-        res = self.storage.get_command_by_index(self.index).command
-        self.index += 1
-        return res
+        res = self.storage.get_command_by_index(self.index)
+        if res is None:
+            self.index = self.storage.get_content_num()
+            return "-1"
+        else:
+            self.index += 1
+            return res.command
 
     def has_next_command(self) -> bool:
         return self.index < self.storage.get_content_num()

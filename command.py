@@ -3,7 +3,7 @@ from abc import abstractmethod
 from dataclasses import dataclass
 from typing import Protocol
 
-from REPLApplication import IPublisherApplication, ISubscriberApplication
+from repl_application import IPublisherApplication, ISubscriberApplication
 
 
 class Command:

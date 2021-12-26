@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from typing import List
 
-from REPlDto import ChannelDTO, UserDTO, DatabaseResponseObject, \
+from repl_dto import ChannelDTO, UserDTO, DatabaseResponseObject, \
     SubscriptionDTO, DatabaseInsertObject
-from Storage import IRepository
+from storage import IRepository
 
 
 @dataclass
