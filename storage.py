@@ -10,7 +10,7 @@ class IRepository(Protocol):
     def get_item_with_id(self, index: int) -> Optional[DatabaseResponseObject]:
         pass
 
-    def get_item_with_data(self, data: str) -> Optional[DatabaseResponseObject]:
+    def get_top_item_with_data(self, data: str) -> Optional[DatabaseResponseObject]:
         pass
 
     def get_all_content(self) -> List[DatabaseResponseObject]:
@@ -48,7 +48,7 @@ class IJsonStorageSystem(IRepository):
 
         return None
 
-    def get_item_with_data(self, data: str) -> Optional[DatabaseResponseObject]:
+    def get_top_item_with_data(self, data: str) -> Optional[DatabaseResponseObject]:
         data_array = self.get_all_content()
 
         for i in data_array:

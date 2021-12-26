@@ -2,7 +2,7 @@ from channel_storage import ChannelStorage
 from command import PublishCommandGenerator, SubscribeCommandGenerator
 from command_storage import CommandStorage
 from input_parser import InputParserBuilder
-from input_strategy import (CommandStorageInputStrategy)
+from input_strategy import (CommandStorageInputStrategy, CommandConsoleInputStrategy)
 from observe import PublishNotificationPrinter, SubscribeNotificationPrinter
 from repl_application import ReplApplication
 from repl_simulator import REPLSimulator
@@ -35,11 +35,11 @@ if __name__ == "__main__":
     # 1. გაშვება ფაილიდან :
     #       ამ დროს commands.json იდან კითხულობს თვითონ
     #       შეყვანა არ უნდა არაფრის.
-    REPLSimulator(
-        CommandStorageInputStrategy(CommandStorage(command_repository)), input_parser
-    ).simulate()
+    # REPLSimulator(
+    #     CommandStorageInputStrategy(CommandStorage(command_repository)), input_parser
+    # ).simulate()
 
-    # 1. გაშვება კონსოლიდან :
+    # 2. გაშვება კონსოლიდან :
     #       ამ დროს კონსოლიდან შეგვყავს ოღონდ
     ########### უნდა იწყებოდეს ">>>" ამითი ###########
     # პირობაში ეგრე იყო და მერე მივხვდი რო კონსოლისაა ეგენი თვითონ
@@ -47,6 +47,8 @@ if __name__ == "__main__":
     # input_parser მაქვს ერთი პატარა კლასი და იმის მეორე იმპლემენტაციას დავწერ
     # დამეზარა წვალება უბრალოდ :დდ
 
-    # REPLSimulator(
-    #     CommandConsoleInputStrategy(), input_parser
-    # ).simulate()
+    # ps. კლასრუმის კომენტარიდან გამომიდანე ვალიდაციები არ დამიწერია შემოყვანაზე
+
+    REPLSimulator(
+        CommandConsoleInputStrategy(), input_parser
+    ).simulate()

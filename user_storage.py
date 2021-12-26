@@ -21,7 +21,7 @@ class UserStorage:
     inner_storage: IRepository
 
     def get_user_by_name(self, name: str) -> Optional[UserDTO]:
-        dto = self.inner_storage.get_item_with_data(name)
+        dto = self.inner_storage.get_top_item_with_data(name)
         if dto is None:
             return None
         return self._to_user(dto)
