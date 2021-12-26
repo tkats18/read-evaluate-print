@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "data": ">>> subscribe <Alice> to <Continuous Delivery>"
+    },
+    {
+      "id": 2,
+      "data": ">>> subscribe <Bob> to <Continuous Delivery>"
+    },
+    {
+      "id": 3,
+      "data": ">>> publish video on <Continuous Delivery>"
+    }
+  ]
+}
