@@ -2,8 +2,7 @@ from channel_storage import ChannelStorage
 from command import PublishCommandGenerator, SubscribeCommandGenerator
 from command_storage import CommandStorage
 from input_parser import InputParserBuilder
-from input_strategy import (CommandConsoleInputStrategy,
-                            CommandStorageInputStrategy)
+from input_strategy import (CommandStorageInputStrategy)
 from observe import PublishNotificationPrinter, SubscribeNotificationPrinter
 from repl_application import ReplApplication
 from repl_simulator import REPLSimulator
