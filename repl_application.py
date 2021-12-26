@@ -17,8 +17,12 @@ class ISubscriberApplication(Protocol):
 
 
 class ReplApplication(Observable):
-
-    def __init__(self, users: IUserStorage, channels: IChannelStorage, subscriptions: ISubscriptionStorage):
+    def __init__(
+        self,
+        users: IUserStorage,
+        channels: IChannelStorage,
+        subscriptions: ISubscriptionStorage,
+    ):
         super().__init__()
         self.users = users
         self.channels = channels
@@ -36,7 +40,7 @@ class ReplApplication(Observable):
                 user_dto = self.users.get_user_by_id(i.user_id)
                 if user_dto is not None:
                     full_users.append(user_dto)
-            self.notify_video_published(PublishNotification(self.channels.get_channel_by_name(channel), full_users))
+            self.notify_video_published(PublishNotification(channel_dto, full_users))
 
     def subscribe(self, user: str, channel: str) -> None:
         if self.channels.get_channel_by_name(channel) is None:

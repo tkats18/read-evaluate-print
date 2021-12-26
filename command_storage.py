@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional, Protocol
 
-from repl_dto import DatabaseInsertObject, DatabaseResponseObject, CommandDTO
+from repl_dto import CommandDTO, DatabaseInsertObject, DatabaseResponseObject
 from storage import IRepository
 
 

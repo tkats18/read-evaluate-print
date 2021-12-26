@@ -4,7 +4,7 @@ logger = True
 
 
 class LoggerType(Enum):
-    SUBSCRIBE = "SUBSCRIBE",
+    SUBSCRIBE = ("SUBSCRIBE",)
     PUBLISH = "PUBLISH"
 
 

@@ -7,7 +7,6 @@ from repl_application import IPublisherApplication, ISubscriberApplication
 
 
 class Command:
-
     @abstractmethod
     def execute(self) -> None:
         pass
@@ -36,7 +35,6 @@ class SubscribeCommand(Command):
 
 
 class ICommandGenerator(Protocol):
-
     def generate_command(self, input_command: str) -> Command:
         pass
 
@@ -46,15 +44,14 @@ class PublishCommandGenerator(ICommandGenerator):
         self.application = application
 
     def generate_command(self, input_command: str) -> Command:
-        cut = list(filter(None,re.split("<(.*?)>", input_command)))
+        cut = list(filter(None, re.split("<(.*?)>", input_command)))
         return PublishCommand(self.application, cut[1])
 
 
 class SubscribeCommandGenerator(ICommandGenerator):
-
     def __init__(self, application: ISubscriberApplication):
         self.application = application
 
     def generate_command(self, input_command: str) -> Command:
-        cut = list(filter(None,re.split("<(.*?)>", input_command)))
+        cut = list(filter(None, re.split("<(.*?)>", input_command)))
         return SubscribeCommand(self.application, cut[0], cut[2])

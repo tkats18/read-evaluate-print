@@ -62,4 +62,4 @@ class CommandConsoleInputStrategy(BaseCommandInputStrategy):
         return current_input
 
     def has_next_command(self) -> bool:
-        raise self.has_next
+        return self.has_next

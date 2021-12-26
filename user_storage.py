@@ -1,12 +1,11 @@
 from dataclasses import dataclass
 from typing import Optional, Protocol
 
-from repl_dto import DatabaseResponseObject, UserDTO, DatabaseInsertObject
+from repl_dto import DatabaseInsertObject, DatabaseResponseObject, UserDTO
 from storage import IRepository
 
 
 class IUserStorage(Protocol):
-
     def get_user_by_name(self, name: str) -> Optional[UserDTO]:
         pass
 
@@ -38,6 +37,7 @@ class UserStorage:
 
     def _to_user(self, db_object: DatabaseResponseObject) -> UserDTO:
         return UserDTO(db_object.id, db_object.data)
+
 
 # სტორიჯების ინტერფეისები
 # კონსოლის გატესტვა

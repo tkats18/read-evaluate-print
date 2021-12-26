@@ -1,8 +1,13 @@
 from dataclasses import dataclass
 from typing import List, Protocol
 
-from repl_dto import ChannelDTO, UserDTO, DatabaseResponseObject, \
-    SubscriptionDTO, DatabaseInsertObject
+from repl_dto import (
+    ChannelDTO,
+    DatabaseInsertObject,
+    DatabaseResponseObject,
+    SubscriptionDTO,
+    UserDTO,
+)
 from storage import IRepository
 
 

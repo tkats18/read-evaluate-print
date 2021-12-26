@@ -9,7 +9,7 @@ class REPLSimulator:
     inputter: ICommandInputStrategy
     parser: InputParser
 
-    def simulate(self):
+    def simulate(self) -> None:
         while self.inputter.has_next_command():
             current_input = self.inputter.get_next_line()
             command = self.parser.parse(current_input)
